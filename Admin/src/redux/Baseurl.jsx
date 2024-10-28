@@ -1,1 +1,1 @@
-export const baseUrl = "https://myproject-vpfu.onrender.com/api/v1"; 
+export const baseUrl = "https://project-e-p1ug.onrender.com/api/v1"; 

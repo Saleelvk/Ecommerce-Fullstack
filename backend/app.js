@@ -20,7 +20,8 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   'http://localhost:5174',
-  'https://project-e-1.onrender.com',// Your Vite app
+  'https://project-e-1.onrender.com',
+  'https://project-e-admin.onrender.com',// Your Vite app
   'http://localhost:5173',     // Another allowed origin
   // Add more origins as needed
 ];

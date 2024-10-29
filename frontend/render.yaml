@@ -1,7 +1,7 @@
 version: 1
 services:
   - type: web
-    name: your-service-name
+    name:PROJECT-E-1
     env: node
     buildCommand: npm install
     startCommand: npm start

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
 import { baseUrl } from "../../redux/Baseurl";
-
 function EditProduct() {
   const { productId } = useParams();
   const navigate = useNavigate(); // Initialize navigate
@@ -101,25 +100,26 @@ function EditProduct() {
       }
 
       // Send the PUT request to update the product with the correct product ID
-      const token = localStorage.getItem('token'); // Retrieve the token from local storage
+   
+        const token = localStorage.getItem('token'); // Retrieve the token from local storage
 
-      const response = await axios.put(
-        `${baseUrl}/product/editproduct/${productId}`, // Correct usage of productId
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Set the content type for form data
-            "Authorization": `Bearer ${token}`, // Include the token in the request header
-          },
-          withCredentials: true, 
-        }
-      );
+        const response = await axios.put(
+            `${baseUrl}/product/editproduct/${productId}`, // Correct usage of productId
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data", // Set the content type for form data
+                    "Authorization": `Bearer ${token}`, // Include the token in the request header
+                },
+                withCredentials: true, 
+            }
+        );
+  
 
       // Log the successful response
       const { message, product } = response.data;
       console.log("Product updated successfully:", message);
       console.log("Updated product details:", product);
-      navigate("/products"); // Redirect to products page after saving changes
     } catch (error) {
       console.error("Error updating product:", error.response || error.message);
     }
@@ -131,32 +131,34 @@ function EditProduct() {
     if (!confirmDelete) return;
 
     try {
-      const token = localStorage.getItem('token'); // Retrieve token from localStorage
+        const token = localStorage.getItem('token'); // Retrieve token from localStorage
 
-      // Include the authorization header with the token
-      await axios.delete(`${baseUrl}/product/deleteProduct/${productId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`, // Send token in the Authorization header
-        },
-        withCredentials: true, 
-      });
+        // Include the authorization header with the token
+        await axios.delete(`${baseUrl}/product/deleteProduct/${productId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`, // Send token in the Authorization header
+            },
+            withCredentials: true, 
+        });
 
-      console.log("Product deleted successfully");
-      navigate("/products"); // Change this to your desired route after deletion
+        console.log("Product deleted successfully");
+        navigate("/products"); // Change this to your desired route after deletion
     } catch (error) {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        console.error("Error deleting product:", error.response.data);
-        console.error("Status code:", error.response.status);
-      } else if (error.request) {
-        // The request was made but no response was received
-        console.error("No response received:", error.request);
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.error("Error setting up request:", error.message);
-      }
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            console.error("Error deleting product:", error.response.data);
+            console.error("Status code:", error.response.status);
+        } else if (error.request) {
+            // The request was made but no response was received
+            console.error("No response received:", error.request);
+        } else {
+            // Something happened in setting up the request that triggered an Error
+            console.error("Error setting up request:", error.message);
+        }
     }
-  };
+};
+
+
 
   return (
     <div className="lg:ml-72 pt-8 pb-5 px-5">
@@ -257,32 +259,44 @@ function EditProduct() {
 
             {/* Stock and Category */}
             <div className="flex gap-6 mb-6">
-              <div>
-                <h3 className="font-semibold">Stock</h3>
+              <div className="flex-grow">
+                <label className="block text-sm font-semibold">Stock</label>
                 <input
                   type="number"
                   value={stock}
                   onChange={(e) => setStock(e.target.value)}
                   className="border-b-2 w-full p-1"
+                  placeholder="Stock"
                 />
               </div>
-              <div>
-                <h3 className="font-semibold">Category</h3>
-                <input
-                  type="text"
+              <div className="flex-grow">
+                <label className="block text-sm font-semibold">Category</label>
+                <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   className="border-b-2 w-full p-1"
-                />
+                >
+                  <option value="">select category</option>
+                  <option value="Laptop">Laptop</option>
+                  <option value="Phone">Phone</option>
+                  <option value="Watch">Watch</option>
+                  <option value="Headphone">Headphone</option>
+                </select>
               </div>
             </div>
 
-            {/* Save and Delete Buttons */}
-            <div className="flex justify-between">
-              <button onClick={handleSaveChanges} className="bg-green-600 text-white py-2 px-4 rounded">
+            {/* Buttons for Save and Delete */}
+            <div className="flex gap-4">
+              <button
+                onClick={handleSaveChanges}
+                className="bg-blue-600 text-white px-4 py-2 rounded"
+              >
                 Save Changes
               </button>
-              <button onClick={handleDeleteProduct} className="bg-red-600 text-white py-2 px-4 rounded">
+              <button
+                onClick={handleDeleteProduct}
+                className="bg-red-600 text-white px-4 py-2 rounded"
+              >
                 Delete Product
               </button>
             </div>

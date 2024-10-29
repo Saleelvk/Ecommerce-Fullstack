@@ -58,14 +58,14 @@ function EditProduct() {
   };
 
   // Handle image upload
- const handleImageUpload = (event) => {
-  const file = event.target.files[0]; // Get the first file uploaded
+const handleImageUpload = (event) => {
+  const file = event.target.files[0]; // Only handle the first selected file
   if (file) {
     const newImage = {
       src: URL.createObjectURL(file),
       file: file,
     };
-    setImages([newImage]); // Replace the existing image with the new one
+    setImages([newImage]); // Set state with a single image, replacing any previous images
   }
 };
 

@@ -16,7 +16,7 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   'http://localhost:5174',
-  'https://project-e-1.onrender.com',
+  'project-oy2wtdu8x-saleelvks-projects.vercel.app',
   'https://project-e-admin.onrender.com',
   'http://localhost:5173'
 ];

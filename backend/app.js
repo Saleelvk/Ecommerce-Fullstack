@@ -16,7 +16,10 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   'http://localhost:5174',
-  'https://project-oy2wtdu8x-saleelvks-projects.vercel.app'
+  'https://project-e-seven.vercel.app',
+  'http://localhost:5173',
+  'https://project-e-j43g.vercel.app',
+  
 ];
 
 // Apply CORS middleware before routes

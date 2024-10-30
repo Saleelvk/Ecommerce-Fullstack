@@ -5,7 +5,7 @@ export const ShopContext = createContext();
 const ShopProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const currency = '$'; // Set your desired currency
-    const url="https://project-e-p1ug.onrender.com" 
+    const url="https://project-b-q3cz.onrender.com" 
   
     // Helper function to update cart in the backend
     const updateCartInBackend = async (productId, quantity) => { 
